@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Website | NT</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo"><a href="/index.html#landing">nt</a></div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/index.html#about">About</a></li> 
+                <li><a href="/index.html#projects">Projects</a></li>
+                <li><a href="/index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <a-waves>
+        <svg class="js-svg"></svg>
+    </a-waves>
+
+    <main class="project-detail">
+        <section class="project-hero">
+            <h1>Personal Website</h1>
+            <p class="project-subtitle">A fully responsive portfolio website built from scratch through iterative problem-solving.</p>
+        </section>
+
+        <section class="project-content">
+            <div class="project-detail-container">
+                
+                <div class="project-overview">
+                    <p class="project-summary">Built a personal portfolio website from the ground up, focusing on modern front-end techniques and responsive design. Refined through continuous debugging and optimization.</p>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Platform</span>
+                            <span class="meta-value">Web</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Language</span>
+                            <span class="meta-value">HTML, CSS, JavaScript</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Libraries</span>
+                            <span class="meta-value">GSAP</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/nedtonks/personal-website" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+        
+                <div class="project-details">
+                    <div class="detail-section">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Fully responsive design using CSS clamp() for fluid scaling</li>
+                            <li>Liquid glass header effect with backdrop-filter blur on scroll</li>
+                            <li>GSAP-powered scroll-triggered text animations</li>
+                            <li>Horizontal scrolling project carousel</li>
+                            <li>Custom SVG loading screen with session-based visibility</li>
+                        </ul>
+                    </div>
+        
+                    <div class="detail-section">
+                        <h3>What I Learned</h3>
+                        <ul>
+                            <li><strong>Responsive CSS:</strong> Utilised clamp() for fluid typography without breakpoint conflicts</li>
+                            <li><strong>GSAP ScrollTrigger:</strong> Complex scroll-driven animations with pinning and scrub controls</li>
+                            <li><strong>Stacking contexts:</strong> Managing z-index and layering with position/transform/opacity</li>
+                            <li><strong>Box model mastery:</strong> How padding and box-sizing affect viewport heights</li>
+                        </ul>
+                    </div>
+        
+                    <div class="detail-section">
+                        <h3>Challenges & Solutions</h3>
+                        <ul>
+                            <li><strong>Responsive scaling:</strong> Fixed pixel values broke at intermediate sizes. Switched to clamp(min, preferred, max) throughout for smooth scaling at any viewport.</li>
+                            <li><strong>Header layering:</strong> Transparent header blocked wave animation. Changed to position: fixed with z-index: 100.</li>
+                            <li><strong>Loading screen flash:</strong> Animation appeared briefly on navigation. Added inline script in head to apply skip-loading class before DOM render.</li>
+                            <li><strong>Animation timing:</strong> Text appeared too quickly and section pinning conflicted with fade-in. Split into two ScrollTrigger timelines for independent control.</li>
+                        </ul>
+                    </div>
+        
+                    <div class="detail-section">
+                        <h3>Design Decisions</h3>
+                        <ul>
+                            <li><strong>Color palette:</strong> Minimal three-color scheme (Carbon Black, Porcelain, Soft Linen) for professional aesthetic</li>
+                            <li><strong>Typography:</strong> IBM Plex Mono throughout for consistent, technical aesthetic</li>
+                            <li><strong>Sticky sections:</strong> Each section exactly 100vh for clear boundaries and focused reading</li>
+                            <li><strong>Wave animation:</strong> Subtle motion on Landing and Contact only—avoids overwhelming content sections</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Tools & Credits</h3>
+                        <ul>
+                            <li><strong>Wave Animation:</strong> Adapted from <a href="https://codepen.io/wodniack/pen/abeMZXQ" target="_blank" style="color: inherit; text-decoration: underline;">wodniack's CodePen</a></li>
+                            <li><strong>Loading Animation:</strong> Custom SVG designed with SVGator</li>
+                            <li><strong>Domain Hosting:</strong> <a href="https://nedtonks.com/" target="_blank" style="color: inherit; text-decoration: underline;">nedtonks.com</a> hosted via SquareSpace</li>
+                            <li><strong>Libraries:</strong> GSAP (ScrollTrigger, ScrollToPlugin)</li>
+                        </ul>
+                    </div>
+                </div>
+        
+            </div>
+        </section>
+
+        <section class="project-gallery project-gallery-fullwidth">
+            <div class="project-gallery-container">
+                <img src="../assets/colourpalette.png" alt="Colour Palette">
+            </div>
+        </section>
+    </main>
+    
+    <script src="https://codepen.io/wodniack/pen/YzmgGzP/b66656b6c21a73b4ca05fda86662cc3a.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
