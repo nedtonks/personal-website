@@ -43,21 +43,20 @@ Open `http://localhost:8000` in your browser.
 
 ```text
 personal-website/
-├── README.md
-└── PersonalWebsite/
-    ├── index.html              # Main landing page
-    ├── css/
-    │   └── style.css           # Global styles & responsive design
-    ├── js/
-    │   └── main.js             # Animations, scroll effects, interactions
-    ├── assets/
-    │   ├── icon.png            # Icons & images
-    │   ├── NT-Animation.svg    # Loading screen animation
-    │   └── ...                 # Other assets
-    └── projects/
-        ├── personal-website.html
-        ├── stock-portfolio-app.html
-        └── wip.html
+├── index.html                  # Main landing page (GitHub Pages entry point)
+├── README.md                   # Repo documentation (ignored by Pages)
+├── css/
+    └── style.css               # Global styles & responsive design
+├── js/
+    └── main.js                 # Animations, scroll effects, interactions
+├── assets/
+    ├── icon.png                # Icons & images
+    ├── NT-Animation.svg        # Loading / hero animation
+    └── ...                     # Other media assets
+├── projects/
+    ├── personal-website.html   # Project detail pages
+    ├── stock-portfolio-app.html
+    └── wip.html
 ```
 
 ## Color Palette
