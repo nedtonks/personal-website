@@ -18,15 +18,12 @@ A fully responsive personal portfolio website showcasing projects, design work, 
 
 ## Tech Stack
 
-- **HTML5, CSS3, JavaScript (ES6+)**
+- **HTML, CSS, JavaScript**
 - **GSAP 3.12.2**
   - ScrollTrigger
   - ScrollToPlugin
 - **Fonts**
   - IBM Plex Mono
-  - Inter
-  - Lexend Giga
-  - Montserrat
 
 ## Setup & Local Development
 
