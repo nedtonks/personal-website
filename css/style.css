@@ -1041,13 +1041,17 @@ a-waves svg path {
 /* MOBILE FIXES - PHONE PORTRAIT VIEW ONLY */
 @media (max-width: 768px) {
     /* Loading Screen - Make SVG bigger to cover screen */
+    .loading-screen {
+        height: 100dvh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
     .loading-svg {
-        width: 200% !important;
-        height: 200% !important;
-        min-width: 200% !important;
-        min-height: 200% !important;
-        object-fit: cover !important;
-        object-position: center !important;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
     
     /* Landing Page */

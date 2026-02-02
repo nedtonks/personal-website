@@ -421,3 +421,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// ============================================
+// CONTACT FORM - MAILTO FUNCTIONALITY
+// ============================================
+// Collects form data and opens user's email client with pre-filled email
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        
+        // Get form values
+        const firstName = this.querySelector('[name="firstName"]').value;
+        const lastName = this.querySelector('[name="lastName"]').value;
+        const email = this.querySelector('[name="email"]').value;
+        const message = this.querySelector('[name="message"]').value;
+        
+        // Create email subject
+        const subject = encodeURIComponent(`Contact from ${firstName} ${lastName}`);
+        
+        // Create email body with form data
+        const body = encodeURIComponent(
+            `Name: ${firstName} ${lastName}\n` +
+            `Email: ${email}\n\n` +
+            `Message:\n${message}`
+        );
+        
+        // Create mailto link
+        const mailtoLink = `mailto:nedtonks@gmail.com?subject=${subject}&body=${body}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Optional: Show success message
+        alert('Opening your email client...');
+    });
+}
