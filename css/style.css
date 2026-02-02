@@ -998,7 +998,7 @@ a-waves svg path {
     /* Loading Screen - Make SVG bigger to cover screen */
     .loading-svg {
         width: 110vh !important;
-        height: 110vh !important;
+        height: 130vh !important;
         object-fit: cover !important;
         object-position: center !important;
     }
