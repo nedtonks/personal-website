@@ -997,10 +997,8 @@ a-waves svg path {
    @media (max-width: 768px) {
     /* Loading Screen - Make SVG bigger to cover screen */
     .loading-svg {
-        width: 200% !important;
-        height: 200% !important;
-        min-width: 200% !important;
-        min-height: 200% !important;
+        width: 110vh !important;
+        height: 110vh !important;
         object-fit: cover !important;
         object-position: center !important;
     }
@@ -1054,7 +1052,7 @@ a-waves svg path {
     /* Projects Section*/
     .projects-overlay-title {
         font-size: clamp(4.5rem, 18vw, 8rem) !important;
-        top: 28.5% !important;  
+        top: 25% !important;  
         transform: translate(-50%, -50%) !important;
     }
     
