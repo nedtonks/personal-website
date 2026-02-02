@@ -76,9 +76,10 @@ class AWaves extends HTMLElement {
    */
   onTouchMove(e) {
     e.preventDefault()
-
     const touch = e.touches[0]
+   
     this.updateMousePosition(touch.clientX, touch.clientY)
+    this.mouse.vs *= 1.5
   }
 
   /**

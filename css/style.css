@@ -1027,21 +1027,24 @@ a-waves svg path {
     }
     
     #about .fade-in-sentence {
-        font-size: 1.3rem !important;
-        line-height: 1.8 !important;
-        margin-bottom: 1.5rem !important;
+        font-size: 0.9rem !important;  /* Even smaller for mobile */
+        line-height: 1.6 !important;
+        margin-bottom: 1rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
     
     #about .about-text-wrapper {
         width: 100% !important;
         max-width: 100% !important;
         margin-left: 0 !important;
+        padding: 0 0.5rem !important;
     }
     
     /* Projects Section*/
     .projects-overlay-title {
-        font-size: clamp(5rem, 22vw, 8rem) !important;
-        top: 31% !important;  
+        font-size: clamp(4.5rem, 18vw, 8rem) !important;  /* Reduced from 22vw to 18vw */
+        top: 28.5% !important;  
         transform: translate(-50%, -50%) !important;
     }
     
@@ -1066,22 +1069,26 @@ a-waves svg path {
     }
     
     #contact .section-content {
-        padding: 4rem 1.5rem 2rem !important;
-        gap: 2rem !important;
+        padding: 4rem 1rem 2rem !important;  /* Reduced horizontal padding */
+        gap: 1.5rem !important;
     }
     
     .contact-form-container {
-        padding: 2rem 1.5rem !important;
-        width: 95% !important;
+        padding: 1.5rem 1rem !important;  /* Reduced padding */
+        width: 92% !important;  /* Reduced from 95% to fit better */
+        max-width: 100% !important;
     }
     
     .contact-title {
-        font-size: 2.2rem !important;
+        font-size: 1.8rem !important;  /* Reduced from 2.2rem */
+        margin-bottom: 1rem !important;
     }
     
     .contact-wrapper {
         grid-template-columns: 1fr !important;
-        gap: 2rem !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     
     .contact-detail {
@@ -1090,7 +1097,9 @@ a-waves svg path {
     
     .contact-form input,
     .contact-form textarea {
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     
     .contact-links {
@@ -1109,6 +1118,80 @@ a-waves svg path {
         flex-direction: column !important;
         gap: 0.5rem !important;
         text-align: center !important;
+    }
+
+    /* PROJECT DETAIL PAGES - Mobile Layout */
+    .project-hero {
+        height: auto !important;
+        min-height: 40vh !important;
+        padding: 3rem 1rem !important;
+    }
+
+    .project-hero h1 {
+        font-size: 2rem !important;
+    }
+
+    .project-hero .project-subtitle {
+        font-size: 0.95rem !important;
+    }
+
+    .project-content {
+        padding: 2rem 1rem !important;
+    }
+
+    .project-detail-container {
+        grid-template-columns: 1fr !important;  /* Single column on mobile */
+        gap: 2rem !important;
+    }
+
+    .project-overview {
+        position: relative !important;  /* Remove sticky on mobile */
+        top: 0 !important;
+    }
+
+    .project-meta {
+        padding: 1rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .project-meta-item strong {
+        font-size: 0.85rem !important;
+    }
+
+    .project-details {
+        gap: 2rem !important;
+    }
+
+    .detail-section h3 {
+        font-size: 1.1rem !important;
+    }
+
+    .detail-section p,
+    .detail-section li {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Project Gallery - Stack images */
+    .gallery-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .project-gallery img {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* PROJECT TILES - Always show title on mobile (no hover) */
+    .project-tile-overlay {
+        opacity: 1 !important;  /* Always visible on mobile */
+        background: linear-gradient(to top, rgba(29, 29, 27, 0.85) 0%, transparent 50%) !important;
+    }
+
+    .project-tile-overlay h3 {
+        transform: translateY(0) !important;  /* Always in position */
+        font-size: 1.2rem !important;
     }
 }
 
