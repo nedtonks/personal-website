@@ -142,6 +142,7 @@ body {
     box-sizing: border-box;
     scroll-snap-align: start;
     z-index: 10;
+    overflow: hidden;  /* Prevent second scrollbar */
 }
 
 #landing .section-content {
@@ -253,9 +254,9 @@ body {
 
 #about .fade-in-sentence {
     opacity: 0;
-    font-size: clamp(1rem, 2.2vw, 1.7rem); 
-    line-height: clamp(1.6, 2.2vw, 1.9);    
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 1.3vw, 1.3rem);  /* Reduced from 2.2vw to 1.3vw */
+    line-height: clamp(1.6, 1.8vw, 1.8);    /* Reduced from 2.2vw */
+    margin-bottom: clamp(1rem, 1.5vw, 1.5rem);  /* Reduced from 2vw */
     color: #3a3a3a; 
     text-align: left;
 }
@@ -914,7 +915,7 @@ body {
 
 /* waves background START */
 a-waves {
- display: block;
+    display: block;
     --x: -0.5rem;
     --y: 50%;
 
@@ -961,32 +962,76 @@ a-waves svg path {
 /* waves background END */
 
 /*----------------------------------------------------------------------------------/
-/* Laptop START*/
-@media (max-width: 1440px) {
-    /* About section */
+/* Laptop START - screen sizes (769px - 1600px) */
+@media (min-width: 769px) and (max-width: 1600px) {
+    /* Fix landing section scrollbar */
+    #landing {
+        overflow: hidden;
+    }
+    
+    /* About section - Smaller text for readability */
     #about .about-text-wrapper {
-        width: 85%;
-        max-width: 85%;
-        margin-left: 10%;
+        width: 75%;
+        max-width: 75%;
+        margin-left: 12%;
     }
     
     #about h2 {
-        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-size: clamp(2.5rem, 5vw, 4rem);
     }
     
     #about .fade-in-sentence {
-        font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+        font-size: clamp(0.85rem, 1.2vw, 1.1rem);  
+        line-height: 1.6;
+        margin-bottom: 1rem;
     }
     
-    /* Projects tiles */
+    #projects {
+        min-height: 100vh !important;
+        height: auto !important;
+    }
+    /* Projects tiles*/
     .project-tile {
-        min-width: 350px;
-        height: 380px;
+        min-width: clamp(310px, 28vw, 420px) !important;  
+        height: clamp(310px, 28vw, 420px) !important;
     }
     
-    /* Contact form */
+    .projects-overlay-title {
+        font-size: clamp(4.5rem, 9vw, 8rem) !important;  
+        top: 27% !important;
+    }
+    
+    /* Push scroll container down */
+    .projects-scroll-container {
+        padding-top: 8rem !important;  /* Push tiles down */
+    }
+  
+    /* Contact section */
+    #contact {
+        height: 100vh !important;
+        min-height: 100vh !important;
+    }
+    
+    #contact .section-content {
+        padding: 6rem 2rem 0rem !important;  /* Increased top padding to push content down */
+        gap: 1rem !important;  
+        align-items: center !important;  
+        justify-content: flex-start !important;
+    }
+    
+    .contact-form-container {
+        width: 82% !important;
+        padding: 1.5rem 1.75rem !important;  /* Further reduced */
+        max-width: 1000px !important;  /* Limit max width */
+    }
+    
+    .contact-title {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 0.75rem !important;  /* Less space below title */
+    }
+    
     .contact-wrapper {
-        gap: 2.5rem;
+        gap: 0.75rem !important;  /* Tighter gap between info and form */
     }
 }
 
@@ -994,21 +1039,15 @@ a-waves svg path {
 
 
 /* MOBILE FIXES - PHONE PORTRAIT VIEW ONLY */
-   @media (max-width: 768px) {
-    /* Loading Screen */
-    .loading-screen {
-        position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        overflow: hidden;
-    }
+@media (max-width: 768px) {
+    /* Loading Screen - Make SVG bigger to cover screen */
     .loading-svg {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+        width: 200% !important;
+        height: 200% !important;
+        min-width: 200% !important;
+        min-height: 200% !important;
+        object-fit: cover !important;
+        object-position: center !important;
     }
     
     /* Landing Page */
