@@ -525,6 +525,14 @@ body {
     margin: 0;
 }
 
+/* Remove auto-detected phone link styling on iOS */
+.contact-detail a,
+.contact-detail a[href^="tel"] {
+    color: inherit;
+    text-decoration: none;
+    pointer-events: auto;
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -989,11 +997,12 @@ a-waves svg path {
    @media (max-width: 768px) {
     /* Loading Screen - Make SVG bigger to cover screen */
     .loading-svg {
-        width: 150%;
-        height: 150%;
-        min-width: 150%;
-        min-height: 150%;
-        object-fit: cover;
+        width: 200% !important;
+        height: 200% !important;
+        min-width: 200% !important;
+        min-height: 200% !important;
+        object-fit: cover !important;
+        object-position: center !important;
     }
     
     /* Landing Page */
@@ -1018,18 +1027,18 @@ a-waves svg path {
     
     /* About Section */
     #about .section-content {
-        padding: 3rem 1.5rem 2rem !important;  
+        padding: 2.5rem 1.5rem 3rem !important;  /* More bottom padding for line */
     }
     
     #about h2 {
-        font-size: 3rem !important;
-        margin-bottom: 2.5rem !important;
+        font-size: 2.5rem !important;  
+        margin-bottom: 1.5rem !important;  
     }
     
     #about .fade-in-sentence {
-        font-size: 0.9rem !important;  /* Even smaller for mobile */
-        line-height: 1.6 !important;
-        margin-bottom: 1rem !important;
+        font-size: 0.90rem !important; 
+        line-height: 1.5 !important;  
+        margin-bottom: 0.8rem !important;  
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
     }
@@ -1039,11 +1048,12 @@ a-waves svg path {
         max-width: 100% !important;
         margin-left: 0 !important;
         padding: 0 0.5rem !important;
+        margin-bottom: 2rem !important;  
     }
     
     /* Projects Section*/
     .projects-overlay-title {
-        font-size: clamp(4.5rem, 18vw, 8rem) !important;  /* Reduced from 22vw to 18vw */
+        font-size: clamp(4.5rem, 18vw, 8rem) !important;
         top: 28.5% !important;  
         transform: translate(-50%, -50%) !important;
     }
