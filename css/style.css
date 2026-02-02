@@ -985,102 +985,130 @@ a-waves svg path {
 /* Laptop END*/
 
 
-/* Mobile START*/
-@media (max-width: 768px) {
-    /* Header */
-    .site-header {
-        padding: 1rem;
-    }
-    .logo a {
-        font-size: 1.2rem;
+/* MOBILE FIXES - PHONE PORTRAIT VIEW ONLY */
+   @media (max-width: 768px) {
+    /* Loading Screen - Make SVG bigger to cover screen */
+    .loading-svg {
+        width: 150%;
+        height: 150%;
+        min-width: 150%;
+        min-height: 150%;
+        object-fit: cover;
     }
     
-    .main-nav ul {
-        gap: 1.5rem;
+    /* Landing Page */
+    .welcome-text h1 {
+        font-size: clamp(3rem, 15vw, 5rem) !important;
+        line-height: 1.1 !important;
+        word-spacing: 100vw; /* Forces line break between words */
+    }
+    
+    /* Header */
+    .site-header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .logo a {
+        font-size: 1.8rem !important;
     }
     
     .main-nav a {
-        font-size: 0.9rem;
-    }
-
-    .scroll-prompt {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        font-size: 0.7rem;
-    }
-
-    /* Welcome text */
-    .welcome-text {
-        bottom: 1.5rem;
-        left: 1.5rem;
-        font-size: clamp(1.5rem, 8vw + 0.5rem, 3rem);
+        font-size: 1.1rem !important;
     }
     
-    /* About section */
+    /* About Section */
     #about .section-content {
-        padding: 2rem 1.5rem;
+        padding: 3rem 1.5rem 2rem !important;  
     }
     
     #about h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
+        font-size: 3rem !important;
+        margin-bottom: 2.5rem !important;
     }
     
-    #about p {
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
+    #about .fade-in-sentence {
+        font-size: 1.3rem !important;
+        line-height: 1.8 !important;
+        margin-bottom: 1.5rem !important;
     }
     
     #about .about-text-wrapper {
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Projects Section*/
+    .projects-overlay-title {
+        font-size: clamp(5rem, 22vw, 8rem) !important;
+        top: 31% !important;  
+        transform: translate(-50%, -50%) !important;
+    }
+    
+    .project-tile {
+        min-width: clamp(300px, 85vw, 400px) !important;
+        height: clamp(300px, 85vw, 400px) !important;
+    }
+    
+    .projects-scroll-container {
+        padding: 1.5rem !important;
+        gap: 1.5rem !important;
+    }
+    
+    .projects-scroll-prompt {
+        bottom: 5rem !important;
     }
 
-    /* Contact section*/
+    /* Contact Section - Better spacing and sizing */
+    #contact {
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+    
+    #contact .section-content {
+        padding: 4rem 1.5rem 2rem !important;
+        gap: 2rem !important;
+    }
+    
+    .contact-form-container {
+        padding: 2rem 1.5rem !important;
+        width: 95% !important;
+    }
+    
+    .contact-title {
+        font-size: 2.2rem !important;
+    }
+    
     .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    /* Section heights */
-    #landing, #about, #projects, #contact {
-        height: 100vh;
-        min-height: 100vh;
-    }
-
-    /* Project section */
-    .project-detail-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
     }
     
-    .project-overview {
-        position: static;
+    .contact-detail {
+        font-size: 1rem !important;
     }
     
-    .gallery-grid {
-        grid-template-columns: 1fr;
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 1rem !important;
     }
     
-    .project-hero {
-        height: auto;
-        padding: 4rem 2rem;
-    }
-
-    .gallery-grid img {
-        height: 300px;
-    }
-
-    .project-card-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 2rem;
+    .contact-links {
+        gap: 2.5rem !important;
+        padding: 1rem 0 !important;
     }
     
-    .project-icon img {
-        width: 120px;
-        height: 120px;
+    .contact-link i {
+        font-size: 2.2rem !important;
+    }
+    
+    /* Footer */
+    .site-footer {
+        font-size: 0.75rem !important;
+        padding: 1rem 1.5rem 0.5rem !important;
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        text-align: center !important;
     }
 }
 
