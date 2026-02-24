@@ -421,12 +421,46 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
+// ============================================
+// PROJECTS ARROW NAVIGATION
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+  const scroller = document.querySelector('.projects-scroll-container');
+  const prevBtn = document.querySelector('.projects-nav-btn.prev');
+  const nextBtn = document.querySelector('.projects-nav-btn.next');
+  const tiles = scroller ? scroller.querySelectorAll('.project-tile') : [];
+
+  if (!scroller || !prevBtn || !nextBtn || !tiles.length) return;
+
+  // Approximate one “step” as width of a tile + gap
+  const getStep = () => {
+      const firstTile = tiles[0].getBoundingClientRect();
+      // gap is roughly 2rem (~32px) – adjust if needed
+      return firstTile.width + 32;
+  };
+
+  prevBtn.addEventListener('click', () => {
+      scroller.scrollBy({
+          left: -getStep(),
+          behavior: 'smooth'
+      });
+  });
+
+  nextBtn.addEventListener('click', () => {
+      scroller.scrollBy({
+          left: getStep(),
+          behavior: 'smooth'
+      });
+  });
+});
+
+
 // ============================================
 // CONTACT FORM - MAILTO FUNCTIONALITY
 // ============================================
 // Collects form data and opens user's email client with pre-filled email
 const contactForm = document.getElementById('contactForm');
-
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
