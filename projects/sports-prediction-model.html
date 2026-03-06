@@ -36,7 +36,96 @@
     <main class="project-detail">
         <section class="project-hero">
             <h1>Sports Prediction Model</h1>
-            <p class="project-subtitle">Work in Progress: This project is currently under development. Check back soon for updates and details about the Sports Prediction Model.</p>
+            <p class="project-subtitle">A machine learning pipeline that predicts AFL match outcomes using historical data and engineered form features.</p>
+        </section>
+
+        <section class="project-content">
+            <div class="project-detail-container">
+                <div class="project-overview">
+                    <p class="project-summary">Built an end-to-end pipeline to predict AFL win/loss outcomes. Trained on 24 seasons (2000–2023) and evaluated on 2024, with a focus on leakage-safe feature engineering and time-aware validation.</p>
+
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Platform</span>
+                            <span class="meta-value">Python / Jupyter</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Language</span>
+                            <span class="meta-value">Python</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Libraries</span>
+                            <span class="meta-value">pandas, scikit-learn</span>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/nedtonks/afl-predictor" class="project-link" target="_blank" rel="noreferrer">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+
+                <div class="project-details">
+                    <div class="detail-section">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Full ML pipeline: ingestion, cleaning, feature engineering, training, and evaluation</li>
+                            <li>Wide-to-long transformation (two rows per match: one per team)</li>
+                            <li>Rolling form features (points for/against, win %) built with strict <strong>shift(1)</strong> to prevent leakage</li>
+                            <li>Hyperparameter tuning via <strong>GridSearchCV</strong> with <strong>TimeSeriesSplit</strong> for temporally correct validation</li>
+                            <li>Robustness tested across 2022, 2023, and 2024 (accuracy stable within ~0.5%)</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>What I Learned</h3>
+                        <ul>
+                            <li><strong>End-to-end ML structure:</strong> Separate raw data, processed data, and models — use notebooks for experimentation, save stable outputs</li>
+                            <li><strong>Time-based evaluation:</strong> Train on past, test on future — use TimeSeriesSplit so tuning doesn't learn from future seasons</li>
+                            <li><strong>Beyond accuracy:</strong> Precision matters more than raw accuracy — "when I predict a win, how often am I right?"</li>
+                            <li><strong>Iterating systematically:</strong> Baseline → features → tuning → robustness check. Each step measured, not guessed</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>Challenges &amp; Solutions</h3>
+                        <ul>
+                            <li><strong>Data leakage:</strong> Shifted all rolling windows by shift(1) to ensure only past data informs each prediction</li>
+                            <li><strong>Wide-to-long transformation:</strong> Restructured one-row-per-match into one-row-per-team to make per-team features possible</li>
+                            <li><strong>Extra-time games:</strong> Two matches had missing data due to extra time — manually patched rather than dropping valid data</li>
+                            <li><strong>Off-season rest gaps:</strong> Days since last game ballooned over summer — capped at 30 days to reflect in-season rest only</li>
+                            <li><strong>Category code consistency:</strong> Team/venue codes risk misalignment with new data — documented for future API integration</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Design Decisions</h3>
+                        <ul>
+                            <li><strong>Random Forest:</strong> captures non-linear interactions between form, venue, and rest without heavy preprocessing</li>
+                            <li><strong>Binary target (win/loss):</strong> draws folded into loss to simplify the task and mirror tipping use cases</li>
+                            <li><strong>Predictor set:</strong> pf_roll5, pa_roll5, winpct_roll3 performed best on held-out 2024</li>
+                            <li><strong>Modular notebooks:</strong> exploration, features, training, and iteration kept separate for reproducibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Results</h3>
+                        <ul>
+                            <li><strong>Baseline:</strong> ~52% accuracy (home/venue/opponent only)</li>
+                            <li><strong>Enhanced model (v2):</strong> ~59.5% accuracy, ~58.5% precision on 2024</li>
+                            <li><strong>Context:</strong> pro AFL tipsters average ~65% — competitive for a historical-only statistical approach</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Future Roadmap</h3>
+                        <ul>
+                            <li>Integrate Champion Data API for live fixtures and season predictions</li>
+                            <li>Add ladder position differential and travel distance as features</li>
+                            <li>Refactor notebook logic into <code>src/</code> modules (<code>data_loader.py, features.py, model.py</code>)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     
