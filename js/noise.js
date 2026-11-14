@@ -1,3 +1,4 @@
+// noisejs@2.1.0 by Joseph Gentle - https://github.com/josephg/noisejs (public domain)
 /*
  * A speed-improved perlin and simplex noise algorithms for 2D.
  *

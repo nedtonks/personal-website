@@ -84,8 +84,7 @@ personal-website/
 ## Author
 
 **Ned Tonks**  
-https://nedtonks.com  
-nedtonks@gmail.com
+https://nedtonks.com
 
 ## License
 

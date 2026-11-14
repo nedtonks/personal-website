@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const textTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#about',
-        start: 'top 50%',   
+        start: 'top 50%',
         end: 'top top',
         scrub: 1,
         pin: false
@@ -461,6 +461,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // ============================================
 // Posts the form to FormSubmit (https://formsubmit.co), which emails it on.
 // No backend needed, works on GitHub Pages.
+// TODO: after activating FormSubmit, replace the email in this URL with the
+// random alias FormSubmit gives you, so the address isn't visible in the source.
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/nedtonks@gmail.com';
+const FORM_SUCCESS_MSG = "Thanks! Your message has been sent. I'll get back to you soon.";
+
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     const submitBtn = contactForm.querySelector('.submit-btn');
@@ -470,14 +475,18 @@ if (contactForm) {
         e.preventDefault();
 
         const data = Object.fromEntries(new FormData(contactForm));
-        if (data._honey) return; // bot filled the hidden field
+        if (data._honey) { // hidden field filled: likely a bot, so pretend it worked and send nothing
+            contactForm.reset();
+            status.textContent = FORM_SUCCESS_MSG;
+            return;
+        }
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'SENDING...';
         status.textContent = '';
 
         try {
-            const res = await fetch('https://formsubmit.co/ajax/nedtonks@gmail.com', {
+            const res = await fetch(FORM_ENDPOINT, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify({
@@ -494,9 +503,9 @@ if (contactForm) {
                 throw new Error(result.message || 'Request failed');
             }
             contactForm.reset();
-            status.textContent = "Thanks! Your message has been sent. I'll get back to you soon.";
-        } catch (err) {
-            status.textContent = 'Sorry, something went wrong. Please email me directly at nedtonks@gmail.com.';
+            status.textContent = FORM_SUCCESS_MSG;
+        } catch {
+            status.textContent = 'Sorry, something went wrong. Please try again, or reach out on LinkedIn.';
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = 'SUBMIT';
