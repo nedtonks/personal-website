@@ -632,12 +632,17 @@ body {
 }
 
 /* Spam honeypot - kept off-screen rather than display:none so bots still fill it */
-.form-honeypot {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
+.contact-form input.form-honeypot {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
     opacity: 0;
+    pointer-events: none;
 }
 
 /* Placeholder tiles for upcoming projects (not links) */
