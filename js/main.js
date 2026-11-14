@@ -68,7 +68,7 @@ class AWaves extends HTMLElement {
    * Mouse handler
    */
   onMouseMove(e) {
-    this.updateMousePosition(e.pageX, e.pageY)
+    this.updateMousePosition(e.clientX, e.clientY)
   }
 
   /**
@@ -89,7 +89,7 @@ class AWaves extends HTMLElement {
     const { mouse } = this
 
     mouse.x = x - this.bounding.left
-    mouse.y = y - this.bounding.top + window.scrollY
+    mouse.y = y - this.bounding.top // <a-waves> is position:fixed, so viewport coords are correct
 
     if (!mouse.set) {
       mouse.sx = mouse.x
@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const textTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#about',
-        start: 'top 50%%',   
+        start: 'top 50%',
         end: 'top top',
         scrub: 1,
         pin: false
@@ -457,37 +457,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // ============================================
-// CONTACT FORM - MAILTO FUNCTIONALITY
+// CONTACT FORM - SENDS VIA FORMSUBMIT
 // ============================================
-// Collects form data and opens user's email client with pre-filled email
+// Posts the form to FormSubmit (https://formsubmit.co), which emails it on.
+// No backend needed, works on GitHub Pages.
+// TODO: after activating FormSubmit, replace the email in this URL with the
+// random alias FormSubmit gives you, so the address isn't visible in the source.
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/nedtonks@gmail.com';
+const FORM_SUCCESS_MSG = "Thanks! Your message has been sent. I'll get back to you soon.";
+
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
-        
-        // Get form values
-        const firstName = this.querySelector('[name="firstName"]').value;
-        const lastName = this.querySelector('[name="lastName"]').value;
-        const email = this.querySelector('[name="email"]').value;
-        const message = this.querySelector('[name="message"]').value;
-        
-        // Create email subject
-        const subject = encodeURIComponent(`Contact from ${firstName} ${lastName}`);
-        
-        // Create email body with form data
-        const body = encodeURIComponent(
-            `Name: ${firstName} ${lastName}\n` +
-            `Email: ${email}\n\n` +
-            `Message:\n${message}`
-        );
-        
-        // Create mailto link
-        const mailtoLink = `mailto:nedtonks@gmail.com?subject=${subject}&body=${body}`;
-        
-        // Open email client
-        window.location.href = mailtoLink;
-        
-        // Optional: Show success message
-        alert('Opening your email client...');
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const status = contactForm.querySelector('.form-status');
+
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const data = Object.fromEntries(new FormData(contactForm));
+        if (data._honey) { // hidden field filled: likely a bot, so pretend it worked and send nothing
+            contactForm.reset();
+            status.textContent = FORM_SUCCESS_MSG;
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'SENDING...';
+        status.textContent = '';
+
+        try {
+            const res = await fetch(FORM_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    name: `${data.firstName} ${data.lastName}`,
+                    email: data.email,
+                    message: data.message,
+                    _replyto: data.email,
+                    _subject: `Website contact from ${data.firstName} ${data.lastName}`,
+                    _template: 'table',
+                }),
+            });
+            const result = await res.json().catch(() => ({}));
+            if (!res.ok || result.success === false || result.success === 'false') {
+                throw new Error(result.message || 'Request failed');
+            }
+            contactForm.reset();
+            status.textContent = FORM_SUCCESS_MSG;
+        } catch {
+            status.textContent = 'Sorry, something went wrong. Please try again, or reach out on LinkedIn.';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'SUBMIT';
+        }
     });
 }

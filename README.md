@@ -15,13 +15,13 @@ A fully responsive personal portfolio website showcasing projects, design work, 
 - Horizontal project carousel
 - Custom loading screen with session storage
 - Pinned scroll sections
+- Working contact form (via FormSubmit, no backend needed)
 
 ## Tech Stack
 
 - **HTML, CSS, JavaScript**
 - **GSAP 3.12.2**
   - ScrollTrigger
-  - ScrollToPlugin
 - **Fonts**
   - IBM Plex Mono
 
@@ -31,7 +31,7 @@ Clone the repository and run locally:
 
 ```bash
 git clone https://github.com/nedtonks/personal-website.git
-cd personal-website/PersonalWebsite
+cd personal-website
 python -m http.server 8000
 ```
 
@@ -48,15 +48,16 @@ personal-website/
 ├── css/
     └── style.css               # Global styles & responsive design
 ├── js/
-    └── main.js                 # Animations, scroll effects, interactions
+    ├── main.js                 # Animations, scroll effects, interactions
+    └── noise.js                # Perlin noise used by the wave background
 ├── assets/
     ├── icon.png                # Icons & images
     ├── NT-Animation.svg        # Loading / hero animation
     └── ...                     # Other media assets
 ├── projects/
     ├── personal-website.html   # Project detail pages
-    ├── stock-portfolio-app.html
-    └── wip.html
+    ├── sports-prediction-model.html
+    └── stock-portfolio-app.html
 ```
 
 ## Color Palette
@@ -77,12 +78,13 @@ personal-website/
 - Wave animation inspired by **wodniack** (CodePen)
 - Loading animation created with **SVGator**
 - Animation library: **GSAP**
+- Perlin noise: **noisejs** by Joseph Gentle (public domain, based on Stefan Gustavson's work)
+- Contact form delivery: **FormSubmit**
 
 ## Author
 
 **Ned Tonks**  
-https://nedtonks.com  
-ned.tonks@gmail.com
+https://nedtonks.com
 
 ## License
 

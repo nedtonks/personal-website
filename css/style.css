@@ -618,6 +618,39 @@ body {
     color: #FFFFF7;
 }
 
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.form-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: #1D1D1B;
+    min-height: 1em;
+    margin: 0;
+}
+
+/* Spam honeypot - kept off-screen rather than display:none so bots still fill it */
+.form-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+/* Placeholder tiles for upcoming projects (not links) */
+.project-tile--soon {
+    cursor: default;
+}
+
+.project-tile--soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255, 255, 247, 0.1);
+}
+
 .contact-links {
     display: flex;
     gap: 3rem;
