@@ -217,7 +217,7 @@ body {
     background-color: #1D1D1B; 
     padding: clamp(6rem, 10vw, 10rem) clamp(2rem, 4vw, 4rem) clamp(2rem, 3vw, 3rem); 
     color: #1D1D1B; /* Carbon Black */
-    overflow-y: visible;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -225,20 +225,29 @@ body {
     box-sizing: border-box;
 }
 
+/* Heading and text share one centred column, and the column sits in the
+   vertical middle of the pinned section (auto margins never clip on overflow) */
+#about h2,
+#about .about-text-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 62rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #about h2 {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: clamp(2rem, 5vw, 4rem); 
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 500;
     color: #3a3a3a;
-    margin-bottom: clamp(1rem, 2vw, 2rem);  /* More space below title */
-    margin-top: 3rem;
+    margin-top: auto;
+    margin-bottom: clamp(1rem, 2vw, 2rem);
 }
 
 #about .about-text-wrapper {
-    width: 100%;
-    max-width: 80%;  
-    margin-left: 15%; 
-    position: relative;
+    margin-bottom: auto;
     padding-bottom: 2rem;
 }
 
@@ -270,6 +279,24 @@ body {
     color: white;
 }
 /*About END*/
+
+/* Topographic halftone backdrop (js/topo.js), used in About and Projects */
+.topo-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    /* no edge mask: About and Projects meet at the ring centre, so both
+       must reach their shared edge at full strength to join up */
+    opacity: 0.06;
+}
+
+.topo-bg canvas {
+    display: block;
+    image-rendering: pixelated;
+}
+
 
 /*Projects START*/
 #projects {
@@ -1023,12 +1050,6 @@ a-waves svg path {
     }
     
     /* About section - Smaller text for readability */
-    #about .about-text-wrapper {
-        width: 75%;
-        max-width: 75%;
-        margin-left: 12%;
-    }
-    
     #about h2 {
         font-size: clamp(2.5rem, 5vw, 4rem);
     }
@@ -1127,20 +1148,20 @@ a-waves svg path {
         font-size: 1.1rem !important;
     }
     
-    /* About Section */
+    /* About Section - top padding clears the fixed header */
     #about .section-content {
-        padding: 2.5rem 1.5rem 3rem !important;  /* More bottom padding for line */
+        padding: 5.5rem 1.5rem 1.5rem !important;
     }
     
     #about h2 {
-        font-size: 2.5rem !important;  
-        margin-bottom: 1.5rem !important;  
+        font-size: 2rem !important;  
+        margin-bottom: 1rem !important;  
     }
     
     #about .fade-in-sentence {
-        font-size: 0.90rem !important; 
-        line-height: 1.5 !important;  
-        margin-bottom: 0.8rem !important;  
+        font-size: 0.82rem !important; 
+        line-height: 1.45 !important;  
+        margin-bottom: 0.7rem !important;  
         word-wrap: break-word !important;
         overflow-wrap: break-word !important;
     }
@@ -1149,8 +1170,8 @@ a-waves svg path {
         width: 100% !important;
         max-width: 100% !important;
         margin-left: 0 !important;
-        padding: 0 0.5rem !important;
-        margin-bottom: 2rem !important;  
+        padding: 0 0.5rem 1.5rem !important;
+        margin-bottom: auto !important;  
     }
     
     /* Projects Section*/
